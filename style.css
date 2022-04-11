@@ -1,0 +1,25 @@
+#div-el section div {
+  width: 10vmin;
+  height: 10vmin;
+  margin: calc(10vmin / 5) 0;
+}
+div#line {
+  background: #dd9f3c;
+  clip-path: polygon(48% 0%, 52% 0%, 52% 100%, 48% 100%);
+}
+div.triangle {
+  background: #ccaa3c;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+div#square {
+  background: #bbbb3c;
+  clip-path: none;
+}
+div#pentagone {
+  background: #aacc3c;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+div#hexablink {
+  background: #99dd3c;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+}
