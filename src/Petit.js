@@ -1,6 +1,6 @@
 export default class Petit {
 	constructor (playerEl, petit) {
-		this.version = 0.1;
+		this.version = 0.2;
 		this.petit = petit;
 		this.playerEl = playerEl;
 		this.animations = [];
@@ -58,12 +58,13 @@ export default class Petit {
 		this.animations[0].addEventListener("finish", () => {
 			this.isPlaying = false;		  	
 		  	playerEl.dispatchEvent(
-				new CustomEvent("finished")
+				new CustomEvent("ended")
 			);
 		});
+		playerEl.dispatchEvent(
+			new CustomEvent("canplay", {detail:this})
+		);
 	}
-
-	//TODO:this.animations[0].statettt instead of this.isPlaying
 
 	pauseAll() {
 		this.isPlaying = false;
@@ -80,7 +81,7 @@ export default class Petit {
 			animation.finish();
 		});
 		this.playerEl.dispatchEvent(
-			new CustomEvent("finished")
+			new CustomEvent("ended")
 		);		
 	}
 	playAll() {
