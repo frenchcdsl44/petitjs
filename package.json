@@ -12,8 +12,8 @@
   "devDependencies": {
     "c8": "^7.11.2",
     "jsdom": "^19.0.0",
-    "vite": "^2.9.6",
-    "vitest": "^0.10.0"
+    "vite": "^2.9.8",
+    "vitest": "^0.10.2"
   },
   "repository": {
     "type": "git",
