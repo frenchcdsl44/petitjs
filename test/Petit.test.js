@@ -98,6 +98,45 @@ test('Petit() one keyframe with timing', () => {
 
 
 })
+
+
+test('Petit() with poster', () => {	  
+	let myPetit = new Petit( playerEl, {
+	
+		"nm": "Example of animation",
+		"v": "0.1",
+		"ip": 0,
+		"op": 175,
+		"poster": 50,
+		"events": [24],
+		"layers": [
+
+			{ 
+				"sel":"#line", 
+				"kf": [
+						 {"transform":"translateX(0) rotate(0deg)", "easing": "cubic-bezier(0,.5,1,.5)", "kft":0},
+				]
+			},{ 
+				"sel":"#pentagone", 
+				"kf": [
+						 {"transform":"translateX(0) rotate(0deg)", "kft":60},
+						 {"transform":"translateX(90vw) rotate(2700deg)", "background":"red", "kft":140}
+				]
+			}
+		]
+	});
+	
+	expect(myPetit.showingPoster).eq(true)
+	myPetit.playAll()
+	expect(myPetit.showingPoster).eq(false)
+	myPetit.setPoster(50)
+	expect(myPetit.showingPoster).eq(true)
+	myPetit.playAll()
+	expect(myPetit.showingPoster).eq(false)
+})
+
+
+
 /*
 test('JSON', () => {
   const input = {

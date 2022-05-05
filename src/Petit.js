@@ -6,9 +6,10 @@ export default class Petit {
 		this.animations = [];
 		//this.timings = [];
 		this.isPlaying = false;
-		//this.oldT= -1;
-		this.normalSpeed = Math.round( 1000/( petit.fr ? petit.fr : 60 ) );
-
+		this.normalSpeed = 1000/( petit.fr ? petit.fr : 60 ) ; 
+		this.showingPoster = false;
+		this.poster = petit.poster;
+		//console.log("petit", petit);
 		petit.layers?.forEach((elCollection, i) => {
 			const els = playerEl.querySelectorAll(elCollection.sel);
 			let animArray = []
@@ -36,6 +37,8 @@ export default class Petit {
 			});
 
 			//console.log(animArray, (els, timing));
+			//console.log("timing.delay + timing.duration + timing.endDelay", timing.delay + timing.duration + timing.endDelay, (timing.delay + timing.duration + timing.endDelay)*24/1000 );
+			
 			els.forEach( (el) => {
 				//console.log(el.id, animArray);
 				let anim = new KeyframeEffect(
@@ -61,6 +64,7 @@ export default class Petit {
 				new CustomEvent("ended")
 			);
 		});
+		this.setPoster(this.poster);
 		playerEl.dispatchEvent(
 			new CustomEvent("canplay", {detail:this})
 		);
@@ -85,6 +89,12 @@ export default class Petit {
 		);		
 	}
 	playAll() {
+		if(this.poster!=null && !isNaN(this.poster) && this.showingPoster){
+			this.animations.forEach(animation => {
+				animation.currentTime =0;
+			});
+		}
+		this.showingPoster = false;
 		this.isPlaying = true;
 		this.playerEl.dispatchEvent(
 			new CustomEvent("play")
@@ -92,5 +102,12 @@ export default class Petit {
 		this.animations.forEach((animation) => {
 			animation.play();
 		});
+	}
+	setPoster(kf){
+		this.poster = kf;
+		this.animations.forEach(animation => {
+			animation.currentTime = +kf*this.normalSpeed;
+		});
+		this.showingPoster = true;
 	}
 }
