@@ -58,13 +58,14 @@ export default class Petit {
 		petit.events?.forEach((elCollection, i) => {			//TODO
 		});
 
-		this.animations[0].addEventListener("finish", () => {
+		this.animations[0]?.addEventListener("finish", () => {
 			this.isPlaying = false;		  	
 		  	playerEl.dispatchEvent(
 				new CustomEvent("ended")
 			);
 		});
 		this.setPoster(this.poster);
+
 		playerEl.dispatchEvent(
 			new CustomEvent("canplay", {detail:this})
 		);
@@ -89,7 +90,7 @@ export default class Petit {
 		);		
 	}
 	playAll() {
-		if(this.poster!=null && !isNaN(this.poster) && this.showingPoster){
+		if(this.showingPoster){
 			this.animations.forEach(animation => {
 				animation.currentTime =0;
 			});
@@ -105,9 +106,13 @@ export default class Petit {
 	}
 	setPoster(kf){
 		this.poster = kf;
-		this.animations.forEach(animation => {
-			animation.currentTime = +kf*this.normalSpeed;
-		});
-		this.showingPoster = true;
+		if(this.poster!=null && !isNaN(this.poster)){
+			this.animations.forEach(animation => {
+				animation.currentTime = +kf*this.normalSpeed;
+			});
+			console.log('nan')
+			this.showingPoster = true;
+		}
+		console.log('showingPoster', this.showingPoster)
 	}
 }

@@ -9,7 +9,7 @@ let myPetit =  new Petit( document.getElementById('div-el'), {
 	"ip": 0,
 	"op": 175,
 	"fr": 24,
-	"poster":20,
+	"poster":50,
 	"layers": [
 
 		{ 
@@ -93,4 +93,4 @@ window.myPetit = myPetit;
 document.getElementById('div-el').addEventListener("ended", () => {
 	myPetit.playAll();
 });
-myPetit.playAll();
+//myPetit.playAll();

@@ -137,6 +137,32 @@ test('Petit() with poster', () => {
 
 
 
+test('Petit() without poster', () => {	  
+	let myPetit = new Petit( playerEl, {
+	
+		"nm": "Example of animation",
+		"v": "0.1",
+		"ip": 0,
+		"op": 175,
+		"events": [24],
+		"layers": [
+		]
+	});
+	
+	expect(myPetit.showingPoster).eq(false)
+	myPetit.setPoster(50)
+	expect(myPetit.showingPoster).eq(true)
+	myPetit.playAll()
+	expect(myPetit.showingPoster).eq(false)
+	myPetit.setPoster(null)
+	expect(myPetit.showingPoster).eq(false)
+	myPetit.setPoster("ok")
+	expect(myPetit.showingPoster).eq(false)
+	myPetit.playAll()
+	expect(myPetit.showingPoster).eq(false)
+})
+
+
 /*
 test('JSON', () => {
   const input = {
