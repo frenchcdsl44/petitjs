@@ -110,9 +110,7 @@ export default class Petit {
 			this.animations.forEach(animation => {
 				animation.currentTime = +kf*this.normalSpeed;
 			});
-			console.log('nan')
 			this.showingPoster = true;
 		}
-		console.log('showingPoster', this.showingPoster)
 	}
 }
