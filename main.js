@@ -93,4 +93,4 @@ window.myPetit = myPetit;
 document.getElementById('div-el').addEventListener("ended", () => {
 	myPetit.playAll();
 });
-//myPetit.playAll();
+myPetit.playAll();
