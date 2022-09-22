@@ -18,10 +18,8 @@ export default class Petit {
 		petit.layers?.forEach((elCollection, i) => {
 			const els = playerEl.querySelectorAll(elCollection.sel);
 			let animArray = []
-			
 			let minkft = elCollection.kf[0].kft
 			let maxkft = elCollection.kf[elCollection.kf.length-1].kft
-
 			//console.log("maxkft", maxkft);
 			const timing = {
 			  duration: (maxkft-minkft)*this.normalSpeed,
@@ -29,12 +27,10 @@ export default class Petit {
 			  delay: minkft * this.normalSpeed,
 			  endDelay: (petit.op - maxkft)*this.normalSpeed
 			};
-			
-			
 			const duration =  (maxkft-minkft>0 ? maxkft-minkft : 1)
-						
+
 			elCollection.kf.forEach(function (kf, index) {
-				let clonekf = [...kf];
+				let clonekf = {...kf};
 				if(kf.kft) {
 					let newkft = (kf.kft- minkft)/duration;
 					clonekf.offset = newkft;
