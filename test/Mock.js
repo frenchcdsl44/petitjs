@@ -40,6 +40,14 @@ let Animation;
 let HTMLDivElement;
 let KeyframeEffect;
 if (typeof window.KeyframeEffect == 'undefined') {
+	KeyframeEffect = class {
+		constructor (a, b, c) {
+			this.a=a;
+			this.b=b;
+			this.c=c;
+		}
+		getTiming(){}
+	}
 	Animation = class extends EventTarget {
 
 
@@ -47,6 +55,7 @@ if (typeof window.KeyframeEffect == 'undefined') {
     		super();
     		this.a=a
     		this.playState = "paused";
+    		this.effect = new KeyframeEffect();
 		}
 		finish() {
 			const event = new Event('finish');
@@ -60,13 +69,7 @@ if (typeof window.KeyframeEffect == 'undefined') {
 		pause() {
     		this.playState = "paused";
   		}
-	}
-	KeyframeEffect = class {
-		constructor (a, b, c) {
-			this.a=a;
-			this.b=b;
-			this.c=c;
-		}
+  		
 	}
 }
 else {

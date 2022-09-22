@@ -1,6 +1,11 @@
+import {version as petitversion}  from '../package.json';
+
 export default class Petit {
 	constructor (playerEl, petit) {
-		this.version = 0.2;
+		//this.version = 0.2;
+		this.version=petitversion;	
+		//console.log("version", this.version);
+		
 		this.petit = petit;
 		this.playerEl = playerEl;
 		this.animations = [];
@@ -29,28 +34,30 @@ export default class Petit {
 			const duration =  (maxkft-minkft>0 ? maxkft-minkft : 1)
 						
 			elCollection.kf.forEach(function (kf, index) {
+				let clonekf = [...kf];
 				if(kf.kft) {
 					let newkft = (kf.kft- minkft)/duration;
-					kf.offset = newkft;
+					clonekf.offset = newkft;
 				}
-				animArray.push(kf);
+				animArray.push(clonekf);
 			});
 
 			//console.log(animArray, (els, timing));
 			//console.log("timing.delay + timing.duration + timing.endDelay", timing.delay + timing.duration + timing.endDelay, (timing.delay + timing.duration + timing.endDelay)*24/1000 );
 			
+
 			els.forEach( (el) => {
 				//console.log(el.id, animArray);
 				let anim = new KeyframeEffect(
 					el, // element to animate
-					animArray,
+					animArray, 
 					(elCollection.t ? elCollection.t : timing) // keyframe options
 				);
 			 	let animation = new Animation(anim);
 				this.animations.push(animation);
 				//this.timings.push((elCollection.t ? elCollection.t : timing));
 				playerEl.dispatchEvent(
-					new CustomEvent("added", {detail:{animation:animation, sequence:animArray, timining : timing}})
+					new CustomEvent("added", {detail:{animation:animation, sequence:animArray, timing : timing}})
 				);
 			}); 
 		});
